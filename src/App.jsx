@@ -116,7 +116,7 @@ function App() {
         {status === 'active' && (
           <>
             <Stats questions={questions} index={index} />
-            <ProgressBar />
+            <ProgressBar questions={questions} index={index} answer={answer}/>
             <Question
               question={questions[index]}
               index={index}
