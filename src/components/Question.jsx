@@ -26,14 +26,6 @@ export default function Question({ question, answer, dispatch }) {
           </button>
         ))}
       </div>
-      {/* <div className="flex justify-between mt-6">
-        <button className="py-2 px-6 border border-gray-500 rounded-full">
-          01:20
-        </button>
-        <button className="py2 px-6 bg-tranparent rounded-full text-gray-500 border border-gray-600 hover:bg-gray-500 hover:text-gray-50">
-          Next
-        </button>
-      </div> */}
     </div>
   );
 }

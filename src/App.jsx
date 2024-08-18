@@ -8,6 +8,7 @@ import Main from './components/Main';
 import FinishScreen from './components/FinishScreen';
 import AppLayout from './components/AppLayout';
 import Stats from './components/Stats';
+import ProgressBar from './components/ProgressBar';
 
 const data = [
   {
@@ -70,7 +71,10 @@ function reducer(state, action) {
         status: 'ready',
       };
     case 'active':
-      return { ...state, status: 'active' };
+      return {
+        ...state,
+        status: 'active',
+      };
     case 'newAnswer':
       return {
         ...state,
@@ -102,6 +106,7 @@ function App() {
   useEffect(function () {
     dispatch({ type: 'dataReceived', payload: data });
   }, []);
+
   return (
     <AppLayout>
       <Header />
@@ -110,7 +115,8 @@ function App() {
         {status === 'ready' && <StartScreen dispatch={dispatch} />}
         {status === 'active' && (
           <>
-            <Stats questions={questions} index={index}/>
+            <Stats questions={questions} index={index} />
+            <ProgressBar />
             <Question
               question={questions[index]}
               index={index}
