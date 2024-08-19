@@ -1,9 +1,9 @@
-export default function FinishScreen({ dispatch }) {
+export default function FinishScreen({ dispatch, points, totalPoints }) {
   return (
     <div className="px-4">
       <h1 className="text-gray-700">
-        Congratulation you have successfully finished the quiz by scoring X out
-        of X
+        Congratulation you have successfully finished the quiz by scoring{' '}
+        {points} out of {totalPoints}
       </h1>
       <button
         onClick={() => dispatch({ type: 'restart' })}

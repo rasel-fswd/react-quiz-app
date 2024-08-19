@@ -60,6 +60,7 @@ const initalState = {
   status: 'loading',
   answer: null,
   index: 0,
+  points: 0,
 };
 
 function reducer(state, action) {
@@ -76,9 +77,14 @@ function reducer(state, action) {
         status: 'active',
       };
     case 'newAnswer':
+      const question = state.questions.at(state.index);
       return {
         ...state,
         answer: action.payload,
+        points:
+          action.payload === question.correctOption
+            ? state.points + question.points
+            : state.points,
       };
     case 'nextQuestion':
       return {
@@ -98,7 +104,7 @@ function reducer(state, action) {
 }
 
 function App() {
-  const [{ status, questions, index, answer }, dispatch] = useReducer(
+  const [{ status, questions, index, answer, points }, dispatch] = useReducer(
     reducer,
     initalState
   );
@@ -106,6 +112,10 @@ function App() {
   useEffect(function () {
     dispatch({ type: 'dataReceived', payload: data });
   }, []);
+
+  const totalPoints = questions.reduce((acc, question) => {
+    return acc + question.points;
+  }, 0);
 
   return (
     <AppLayout>
@@ -115,7 +125,12 @@ function App() {
         {status === 'ready' && <StartScreen dispatch={dispatch} />}
         {status === 'active' && (
           <>
-            <Stats questions={questions} index={index} />
+            <Stats
+              questions={questions}
+              index={index}
+              points={points}
+              totalPoints={totalPoints}
+            />
             <ProgressBar questions={questions} index={index} answer={answer} />
             <Question
               question={questions[index]}
@@ -131,7 +146,13 @@ function App() {
             />
           </>
         )}
-        {status === 'finish' && <FinishScreen dispatch={dispatch} />}
+        {status === 'finish' && (
+          <FinishScreen
+            dispatch={dispatch}
+            points={points}
+            totalPoints={totalPoints}
+          />
+        )}
       </Main>
     </AppLayout>
   );
