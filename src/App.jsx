@@ -93,7 +93,7 @@ const data = [
   },
   {
     id: 11,
-    question: 'The girld takes___her mother.',
+    question: 'The girl takes___her mother.',
     options: ['with', 'after', 'to', 'for'],
     correctOption: 1,
     points: 1,
@@ -126,7 +126,7 @@ const data = [
   {
     id: 15,
     question: 'Wordsworth introduced the readers___a new kind of poetry.',
-    options: ['at', 'with', 'at', 'to'],
+    options: ['at', 'with', 'for', 'to'],
     correctOption: 3,
     points: 1,
     lavel: 'medium',
