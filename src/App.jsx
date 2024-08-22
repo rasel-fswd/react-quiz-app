@@ -1,4 +1,5 @@
-import { act, useEffect, useReducer } from 'react';
+import { useEffect, useReducer } from 'react';
+import shuffle from './utils/index';
 import Question from './components/Question';
 import StartScreen from './components/StartScreen';
 import Loader from './components/Loader';
@@ -171,6 +172,14 @@ const data = [
     points: 1,
     lavel: 'medium',
   },
+  {
+    id: 21,
+    question: 'I entrusted him___my camera.',
+    options: ['to', 'with', 'in', 'of'],
+    correctOption: 1,
+    points: 1,
+    lavel: 'medium',
+  },
 ];
 
 const initalState = {
@@ -226,9 +235,10 @@ function App() {
     reducer,
     initalState
   );
+  const shuffledArr = shuffle([...data]);
 
   useEffect(function () {
-    dispatch({ type: 'dataReceived', payload: data });
+    dispatch({ type: 'dataReceived', payload: shuffledArr });
   }, []);
 
   const totalPoints = questions.reduce((acc, question) => {
