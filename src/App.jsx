@@ -224,7 +224,7 @@ function reducer(state, action) {
     case 'restart':
       return {
         ...initalState,
-        questions: state.questions,
+        questions: action.payload,
         status: 'ready',
       };
   }
@@ -279,6 +279,7 @@ function App() {
             dispatch={dispatch}
             points={points}
             totalPoints={totalPoints}
+            questions ={shuffledArr}
           />
         )}
       </Main>
