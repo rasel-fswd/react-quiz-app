@@ -46,7 +46,7 @@ const data = [
   },
   {
     id: 5,
-    question: 'Noureen will discuss the ussue with Nabila___phone.',
+    question: 'Noureen will discuss the issue with Nabila___phone.',
     options: ['in', 'over', 'by', 'on'],
     correctOption: 2,
     points: 1,
@@ -279,7 +279,7 @@ function App() {
             dispatch={dispatch}
             points={points}
             totalPoints={totalPoints}
-            questions ={shuffledArr}
+            questions={shuffledArr}
           />
         )}
       </Main>
